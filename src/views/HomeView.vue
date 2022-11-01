@@ -1,36 +1,53 @@
 <template>
   <div class="home wrapper">
     <div class="container">
-      <div class="course_wrapper" v-for="(course, index) in data" :key="index">
-        {{ course.title.rendered.toLowerCase() }}
+      <div class="img_container">
+        <img src="@/assets/logo.svg" alt="Webnauts Academy" />
       </div>
+      <nav class="main_menu">
+        <router-link class="main_menu-item" :to="{name: 'actual'}">Курси, що йдуть</router-link>
+        <router-link class="main_menu-item" :to="{name: 'coming'}">Скоро розпочнуться</router-link>
+        <router-link class="main_menu-item" :to="{name: 'overview'}">Огляд всіх курсів</router-link>
+      </nav>
     </div>
   </div>
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex';
-
 export default {
   name: 'HomeView',
-  computed: {
-    ...mapState('courses', ['isLoading', 'data', 'error']),
-  },
-  methods: {
-    ...mapActions('courses', ['getCourses']),
-    fetchCourses() {
-      const url = 'courses/?lang=uk&per_page=100';
-      this.getCourses({apiUrl: url});
-    },
-  },
-  mounted() {
-    this.fetchCourses();
-  },
-};
+}
 </script>
 
 <style>
-.course_wrapper {
-  margin: 5px 0;
+.main_menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.main_menu-item {
+  margin: 15px 0;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 1px solid #000;
+  color: #000;
+  min-width: 240px;
+  text-align: center;
+}
+
+.main_menu-item:hover,
+.main_menu-item:active {
+  color: #fff;
+  background-color: #e33825;
+}
+
+.img_container {
+  text-align: center;
+  margin-bottom: 25px;
 }
 </style>

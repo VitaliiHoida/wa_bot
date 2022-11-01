@@ -3,7 +3,7 @@
     <div class="container">
       <h1 class="title">Повний перелік наших курсів</h1>
       <div class="course_wrapper" >
-        <course-card v-for="(item, index) in data" :key="index" :course="item"></course-card>
+        <course-card v-for="(item, index) in data" :key="index" :course="item" overview></course-card>
       </div>
     </div>
   </div>
@@ -34,13 +34,5 @@ export default {
 }
 </script>
 
-<style scoped>
-.course_wrapper {
-  margin: 5px 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-
+<style>
 </style>

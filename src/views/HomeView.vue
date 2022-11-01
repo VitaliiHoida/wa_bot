@@ -38,6 +38,7 @@ export default {
   color: #000;
   min-width: 240px;
   text-align: center;
+  letter-spacing: 1px;
 }
 
 .main_menu-item:hover,

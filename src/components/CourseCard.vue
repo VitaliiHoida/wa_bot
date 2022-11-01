@@ -1,10 +1,25 @@
 <template>
-  <a :href="course.link" target="_blank" class="course_link">
+  <div class="course_link">
     <div class="course_item">
       <img src="" class="course_img"/>
-      <h2 class="course_title">{{ course.title.rendered.toUpperCase() }}</h2>
+      <div class="course_info">
+        <h2 class="course_title">{{ course.title.rendered.toUpperCase() }}</h2>
+        <a :href="course.link" target="_blank" v-if="overview">Натисність, щоб дізнатись більше...</a>
+        <div class="buttons" v-if="coming&!pay">
+          <button>Записатись</button>
+          <button @click="change()">Сплатити</button>
+        </div>
+        <div class="buttons" v-if="coming&pay">
+          <button>Сплатити 1 місяць</button>
+          <button>Сплатити повний курс</button>
+        </div>
+        <div class="buttons" v-if="actual">
+          <button>Сплатити 1 місяць</button>
+          <button>Сплатити повний курс</button>
+        </div>
+      </div>
     </div>
-  </a>
+  </div>
 </template>
 
 <script>
@@ -15,6 +30,23 @@ export default {
       type: Object,
       required: true
     },
+    overview: {
+      type: Boolean,
+    },
+    actual: {
+      type: Boolean,
+    },
+    coming: {
+      type: Boolean,
+    }
+  },
+  data: () => ({
+    pay: false,
+  }),
+  methods: {
+    change () {
+      this.pay = !this.pay;
+    }
   },
 }
 </script>
@@ -27,12 +59,6 @@ export default {
   margin: 5px 0;
 }
 
-.course_link:hover,
-.course_link:active
-{
-  color: #fff;
-  background-color: #e33825;
-}
 
 .course_item {
   width: 100%;
@@ -41,15 +67,51 @@ export default {
   padding: 0;
 }
 
+.course_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 0 5px 5px;
+  width: 100%;
+}
+
 .course_img {
   height: 100px;
   width: 100px;
-  margin-right: 5px;
 }
 
 .course_title {
   font-size: 14px;
   line-height: 19px;
   font-weight: 500;
+  margin: 10px 0 0 0;
+}
+
+.course_item a {
+  font-size: 12px;
+  color: #787878;
+  margin: 10px 0 5px 0;
+  text-decoration: none;
+}
+.course_item a:hover {
+  color: #e33825 ;
+}
+
+.course_item button{
+  border: 1px solid #000;
+  color: #000;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 300;
+  background-color: #fff;
+  cursor: pointer;
+  min-width: 170px;
+  padding: 2px 0;
+  text-align: center;
+  margin: 2px 0;
+}
+.course_item button:hover{
+  background-color: #e33825;
+  color: #fff;
 }
 </style>

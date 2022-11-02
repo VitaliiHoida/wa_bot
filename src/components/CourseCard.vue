@@ -128,11 +128,11 @@ export default {
 
 .course_item button {
   border: 1px solid #000;
-  color: #000;
+  color: var(--tg-button-text-color);
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 300;
-  background-color: #fff;
+  background-color: var(--tg-button-color);
   cursor: pointer;
   min-width: 170px;
   padding: 2px 0;
@@ -140,8 +140,4 @@ export default {
   margin: 2px 0;
 }
 
-.course_item button:hover {
-  background-color: #e33825;
-  color: #fff;
-}
 </style>

@@ -24,7 +24,8 @@ export default {
 
 body {
   font-family: "Akzidenz-Grotesk Pro";
-  background-color: #fff;
+  background-color: var(--tg-theme-bg-color);
+  color: var(--tg-theme-text-color);
   margin: 0;
 }
 

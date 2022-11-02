@@ -34,18 +34,15 @@ export default {
   text-transform: uppercase;
   text-decoration: none;
   padding: 10px 20px;
-  border: 1px solid #000;
-  color: #000;
+  /*border: 1px solid #000;*/
+  color: var(--tg-button-text-color);
+  background-color: var(--tg-button-color);
   min-width: 240px;
   text-align: center;
   letter-spacing: 1px;
 }
 
-.main_menu-item:hover,
-.main_menu-item:active {
-  color: #fff;
-  background-color: #e33825;
-}
+
 
 .img_container {
   text-align: center;

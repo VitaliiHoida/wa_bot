@@ -103,7 +103,7 @@ export default {
 }
 
 .course_img {
-  height: 100px;
+  height: 100%;
   width: 100px;
   border-right: 1px solid #787878;
 }
@@ -137,6 +137,8 @@ export default {
   padding: 2px 0;
   text-align: center;
   margin: 2px 0;
+  border: none;
+  outline: none;
 }
 
 </style>

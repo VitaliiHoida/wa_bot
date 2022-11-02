@@ -39,6 +39,8 @@ export default {
   min-width: 240px;
   text-align: center;
   letter-spacing: 1px;
+  border: none;
+  outline: none;
 }
 
 

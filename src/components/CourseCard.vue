@@ -103,7 +103,6 @@ export default {
 }
 
 .course_img {
-  height: 100%;
   width: 100px;
   border-right: 1px solid #787878;
 }

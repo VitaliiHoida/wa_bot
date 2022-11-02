@@ -103,6 +103,7 @@ export default {
 }
 
 .course_img {
+  min-width: 100px;
   width: 100px;
   border-right: 1px solid #787878;
 }

@@ -1,25 +1,52 @@
 <template>
-  <div class="course_link">
-    <div class="course_item">
-      <img src="" class="course_img"/>
-      <div class="course_info">
-        <h2 class="course_title">{{ course.title.rendered.toUpperCase() }}</h2>
-        <a :href="course.link" target="_blank" v-if="overview">Натисність, щоб дізнатись більше...</a>
-        <div class="buttons" v-if="coming&!pay">
-          <button>Записатись</button>
-          <button @click="change()">Сплатити</button>
-        </div>
-        <div class="buttons" v-if="coming&pay">
-          <button>Сплатити 1 місяць</button>
-          <button>Сплатити повний курс</button>
-        </div>
-        <div class="buttons" v-if="actual">
-          <button>Сплатити 1 місяць</button>
-          <button>Сплатити повний курс</button>
+  <div v-if="actual">
+    <div class="course_link" v-if="course.ACF.bot_active_course">
+      <div class="course_item">
+        <img :src="course.ACF.bot_image" class="course_img"/>
+        <div class="course_info">
+          <h2 class="course_title">{{ course.title.rendered.toUpperCase() }}</h2>
+          <a :href="course.link" target="_blank" v-if="overview">Натисність, щоб дізнатись більше...</a>
+          <div class="buttons" v-if="actual">
+            <button>Сплатити 1 місяць</button>
+            <button>Сплатити повний курс</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <div v-if="coming">
+    <div class="course_link" v-if="!!course.ACF.bot_course_start">
+      <div class="course_item">
+        <img :src="course.ACF.bot_image" class="course_img"/>
+        <div class="course_info">
+          <h2 class="course_title">{{ course.title.rendered.toUpperCase() }}</h2>
+          <a :href="course.link" target="_blank" v-if="overview">Натисність, щоб дізнатись більше...</a>
+          <div class="buttons" v-if="!pay">
+            <button>Записатись</button>
+            <button @click="change()">Сплатити</button>
+          </div>
+          <div class="buttons" v-else>
+            <button>Сплатити 1 місяць</button>
+            <button>Сплатити повний курс</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div v-if="overview">
+    <div class="course_link">
+      <div class="course_item">
+        <img :src="course.ACF.bot_image" class="course_img"/>
+        <div class="course_info">
+          <h2 class="course_title">{{ course.title.rendered.toUpperCase() }}</h2>
+          <a :href="course.link" target="_blank" >Натисність, щоб дізнатись більше...</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </template>
 
 <script>
@@ -44,7 +71,7 @@ export default {
     pay: false,
   }),
   methods: {
-    change () {
+    change() {
       this.pay = !this.pay;
     }
   },
@@ -71,13 +98,14 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0 0 5px 5px;
+  padding: 0 5px 5px 5px;
   width: 100%;
 }
 
 .course_img {
   height: 100px;
   width: 100px;
+  border-right: 1px solid #787878;
 }
 
 .course_title {
@@ -93,11 +121,12 @@ export default {
   margin: 10px 0 5px 0;
   text-decoration: none;
 }
+
 .course_item a:hover {
-  color: #e33825 ;
+  color: #e33825;
 }
 
-.course_item button{
+.course_item button {
   border: 1px solid #000;
   color: #000;
   text-transform: uppercase;
@@ -110,7 +139,8 @@ export default {
   text-align: center;
   margin: 2px 0;
 }
-.course_item button:hover{
+
+.course_item button:hover {
   background-color: #e33825;
   color: #fff;
 }

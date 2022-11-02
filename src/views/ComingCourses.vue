@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="container">
+      <router-link class="back_link" :to="{name: 'home'}">&#8592; Назад</router-link>
       <h1 class="title">Скоро розпочнуться</h1>
       <div class="course_wrapper" >
         <course-card v-for="(item, index) in data" :key="index" :course="item" coming></course-card>
@@ -10,7 +11,7 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex';
+import {mapState} from 'vuex';
 import CourseCard from "@/components/CourseCard";
 
 export default {
@@ -19,17 +20,7 @@ export default {
     CourseCard,
   },
   computed: {
-    ...mapState('courses', ['isLoading', 'data', 'error']),
-  },
-  methods: {
-    ...mapActions('courses', ['getCourses']),
-    fetchCourses() {
-      const url = 'courses/?lang=uk&per_page=100';
-      this.getCourses({apiUrl: url});
-    },
-  },
-  mounted() {
-    this.fetchCourses();
+    ...mapState('courses', ['data']),
   },
 }
 </script>

@@ -50,5 +50,10 @@ export default {
 .img_container {
   text-align: center;
   margin-bottom: 25px;
+
+}
+
+.img_container img {
+  width: 100%;
 }
 </style>

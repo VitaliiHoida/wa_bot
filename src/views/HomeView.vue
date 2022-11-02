@@ -35,8 +35,8 @@ export default {
   text-decoration: none;
   padding: 10px 20px;
   /*border: 1px solid #000;*/
-  color: var(--tg-button-text-color);
-  background-color: var(--tg-button-color);
+  color: var(--tg-theme-button-text-color);
+  background-color: var(--tg-theme-button-color);
   min-width: 240px;
   text-align: center;
   letter-spacing: 1px;

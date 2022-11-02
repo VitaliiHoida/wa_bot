@@ -128,11 +128,11 @@ export default {
 
 .course_item button {
   border: 1px solid #000;
-  color: var(--tg-button-text-color);
+  color: var(--tg-theme-button-text-color);
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 300;
-  background-color: var(--tg-button-color);
+  background-color: var(--tg-theme-button-color);
   cursor: pointer;
   min-width: 170px;
   padding: 2px 0;

@@ -80,8 +80,8 @@ export default {
 
 <style scoped>
 .course_link {
-  border: 1px solid #000;
-  color: #000;
+  border: 1px solid var(--tg-theme-text-color);
+  color: var(--tg-theme-text-color);
   text-decoration: none;
   margin: 5px 0;
 }
@@ -127,7 +127,6 @@ export default {
 }
 
 .course_item button {
-  border: 1px solid #000;
   color: var(--tg-theme-button-text-color);
   text-transform: uppercase;
   font-size: 12px;

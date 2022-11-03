@@ -19,6 +19,7 @@
 <script>
 import {mapState} from 'vuex';
 import CourseCard from "@/components/CourseCard";
+import {useTelegram} from "@/helpers/useTelegram";
 
 export default {
   name: 'CoursesOverview',
@@ -39,11 +40,13 @@ export default {
     buyMonth(item) {
       this.order.courseName = item.title.rendered;
       this.order.sumToPay = parseInt(item.ACF.bot_course_price, 10);
-      window.Telegram.WebApp.mainButton.show();
+      const {onToggleButton} = useTelegram();
+      onToggleButton();
     },
     buyFull(item) {
       this.order.courseName = item.title.rendered;
       this.order.sumToPay = parseInt(item.ACF.bot_course_price, 10) * parseInt(item.ACF.bot_course_duration, 10);
+
     }
   },
 }

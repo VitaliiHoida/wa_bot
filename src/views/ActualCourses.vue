@@ -53,7 +53,10 @@ export default {
         tg.MainButton.show();
       }
 
-
+      tg.onEvent('mainButtonClicked', () =>{
+        tg.sendData(JSON.stringify(this.order));
+        console.log(this.order);
+      });
 
     },
     buyFull(item) {
@@ -61,11 +64,6 @@ export default {
       this.order.sumToPay = parseInt(item.ACF.bot_course_price, 10) * parseInt(item.ACF.bot_course_duration, 10);
 
     }
-  },
-  mounted() {
-    window.Telegram.WebApp.onEvent('mainButtonClicked', ()=>{
-      window.Telegram.WebApp.sendData(JSON.stringify(this.order));
-    });
   },
 }
 </script>

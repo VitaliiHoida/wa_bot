@@ -59,7 +59,7 @@ export default {
         console.log(JSON.stringify(data));
       });
 
-      tg.onEvent('mainButtonClicked', () => {
+      tg.offEvent('mainButtonClicked', () => {
         tg.sendData(JSON.stringify(data));
         console.log(JSON.stringify(data));
       })

@@ -52,7 +52,10 @@ export default {
       } else {
         tg.MainButton.show();
       }
-      tg.onEvent('mainButtonClicked', tg.sendData(JSON.stringify(this.order)));
+
+      tg.onEvent('mainButtonClicked', ()=>{
+        tg.sendData(JSON.stringify(this.order));
+      });
 
     },
     buyFull(item) {

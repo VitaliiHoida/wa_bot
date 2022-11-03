@@ -53,8 +53,8 @@ export default {
         tg.MainButton.show();
       }
 
-
-      tg.onEvent('mainButtonClicked', tg.sendData(JSON.stringify(this.order)));
+      const data = this.order;
+      tg.onEvent('mainButtonClicked', tg.sendData(JSON.stringify(data)));
 
     },
     buyFull(item) {

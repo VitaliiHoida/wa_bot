@@ -52,11 +52,11 @@ export default {
       } else {
         tg.MainButton.show();
       }
-      const a = this.order;
+      const data = this.order;
 
-      tg.onEvent('mainButtonClicked', (tg) => {
-        tg.sendData(JSON.stringify(a));
-        console.log(JSON.stringify(a));
+      tg.onEvent('mainButtonClicked', () => {
+        tg.sendData(JSON.stringify(data));
+        console.log(JSON.stringify(data));
       });
 
     },

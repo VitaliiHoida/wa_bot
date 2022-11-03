@@ -40,15 +40,21 @@ export default {
     buyMonth(item) {
       this.order.courseName = item.title.rendered;
       this.order.sumToPay = parseInt(item.ACF.bot_course_price, 10);
+
       const {tg} = useTelegram();
+
       tg.MainButton.setParams({
-        text: 'Сплатити' + this.order.sumToPay + 'грн.',
+        text: 'Сплатити ' + this.order.sumToPay + ' грн.',
       });
+
       if (!this.order.courseName && !this.order.sumToPay){
         tg.MainButton.hide();
       } else {
         tg.MainButton.show();
       }
+
+
+      tg.onEvent('mainButtonClicked', tg.sendData(JSON.stringify(this.order)));
 
     },
     buyFull(item) {

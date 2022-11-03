@@ -7,8 +7,8 @@
           <h2 class="course_title">{{ course.title.rendered.toUpperCase() }}</h2>
           <a :href="course.link" target="_blank" v-if="overview">Натисність, щоб дізнатись більше...</a>
           <div class="buttons" v-if="actual">
-            <button>Сплатити 1 місяць</button>
-            <button>Сплатити повний курс</button>
+            <button @click="buyMonthComp()">Сплатити 1 місяць</button>
+            <button @click="buyFullComp()">Сплатити повний курс</button>
           </div>
         </div>
       </div>
@@ -22,7 +22,7 @@
         <div class="course_info">
           <h2 class="course_title">{{ course.title.rendered.toUpperCase() }}</h2>
           <a :href="course.link" target="_blank" v-if="overview">Натисність, щоб дізнатись більше...</a>
-          <div class="buttons" v-if="!pay">
+          <div class="buttons" v-if="!payClick">
             <button>Записатись</button>
             <button @click="change()">Сплатити</button>
           </div>
@@ -67,12 +67,22 @@ export default {
       type: Boolean,
     }
   },
+  emits: {
+    payMonth: null,
+    payFull: null,
+  },
   data: () => ({
-    pay: false,
+    payClick: false,
   }),
   methods: {
     change() {
-      this.pay = !this.pay;
+      this.payClick = !this.payClick;
+    },
+    buyMonthComp(){
+      this.$emit('payMonth');
+    },
+    buyFullComp(){
+      this.$emit('payFull');
     }
   },
 }

@@ -54,10 +54,15 @@ export default {
       }
       const data = this.order;
 
-      tg.onEvent('mainButtonClicked', () => {
-        tg.sendData("124");
+      /*tg.onEvent('mainButtonClicked', () => {
+        window.Telegram.WebApp.sendData(JSON.stringify(data));
         console.log(JSON.stringify(data));
-      });
+      });*/
+
+      const mainButton = tg.MainButton;
+      mainButton.onClick(() => { window.Telegram.WebApp.sendData(JSON.stringify(data)); });
+
+
 
       tg.offEvent('mainButtonClicked', () => {
         tg.sendData(JSON.stringify(data));

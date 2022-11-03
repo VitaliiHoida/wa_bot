@@ -54,7 +54,7 @@ export default {
       }
       const a = this.order;
 
-      tg.onEvent('mainButtonClicked', () =>{
+      tg.onEvent('mainButtonClicked', (tg) => {
         tg.sendData(JSON.stringify(a));
         console.log(JSON.stringify(a));
       });

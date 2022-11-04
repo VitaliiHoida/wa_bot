@@ -63,12 +63,20 @@ export default {
       const orderData = JSON.stringify(course);
 
       tg.onEvent('mainButtonClicked', function(){
-        tg.sendData(orderData);
-        console.log(orderData);
+        // tg.sendData(orderData);
+        // console.log(orderData);
+        fetch('http://localhost:8000', {
+          method: 'POST',
+          headers: {
+            'Content_Type': 'application/json'
+          },
+          body: JSON.stringify(course)
+        })
+
       });
       tg.offEvent('mainButtonClicked', () => {
-        tg.sendData(orderData);
-        console.log(orderData);
+        // tg.sendData(orderData);
+        // console.log(orderData);
       })
     }
   },

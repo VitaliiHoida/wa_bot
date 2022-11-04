@@ -52,16 +52,16 @@ export default {
       } else {
         tg.MainButton.show();
       }
-      const data = JSON.stringify(this.order);
+      const orderData = JSON.stringify(this.order);
 
       tg.onEvent('mainButtonClicked', () => {
-        window.Telegram.WebApp.sendData(data);
-        console.log(data);
+        tg.sendData(orderData);
+        console.log(orderData);
       });
 
       tg.offEvent('mainButtonClicked', () => {
-        tg.sendData(JSON.stringify(data));
-        console.log(JSON.stringify(data));
+        tg.sendData(orderData);
+        console.log(orderData);
       })
 
     },

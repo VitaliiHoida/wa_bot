@@ -40,38 +40,36 @@ export default {
     buyMonth(item) {
       this.order.courseName = item.title.rendered;
       this.order.sumToPay = parseInt(item.ACF.bot_course_price, 10);
-
+      this.sendData(this.order);
+    },
+    buyFull(item) {
+      this.order.courseName = item.title.rendered;
+      this.order.sumToPay = parseInt(item.ACF.bot_course_price, 10) * parseInt(item.ACF.bot_course_duration, 10);
+      this.sendData(this.order);
+    },
+    sendData(course) {
       const {tg} = useTelegram();
 
       tg.MainButton.setParams({
-        text: 'Сплатити ' + this.order.sumToPay + ' грн.',
+        text: 'Сплатити ' + course.sumToPay + ' грн.',
       });
 
-      if (!this.order.courseName && !this.order.sumToPay){
+      if (!course.courseName && !course.sumToPay){
         tg.MainButton.hide();
       } else {
         tg.MainButton.show();
       }
-      const orderData = JSON.stringify(this.order);
 
-
-
+      const orderData = JSON.stringify(course);
 
       tg.onEvent('mainButtonClicked', function(){
         tg.sendData(orderData);
         console.log(orderData);
       });
-
       tg.offEvent('mainButtonClicked', () => {
         tg.sendData(orderData);
         console.log(orderData);
       })
-
-    },
-    buyFull(item) {
-      this.order.courseName = item.title.rendered;
-      this.order.sumToPay = parseInt(item.ACF.bot_course_price, 10) * parseInt(item.ACF.bot_course_duration, 10);
-
     }
   },
 }

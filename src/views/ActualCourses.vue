@@ -48,7 +48,7 @@ export default {
       this.sendData(this.order);
     },
     sendData(course) {
-      const {tg} = useTelegram();
+      const {tg, quieryId} = useTelegram();
 
       tg.MainButton.setParams({
         text: 'Сплатити ' + course.sumToPay + ' грн.',

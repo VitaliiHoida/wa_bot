@@ -48,7 +48,7 @@ export default {
       this.sendData(this.order);
     },
     sendData(course) {
-      const {tg, quieryId} = useTelegram();
+      const {tg /*, quieryId*/} = useTelegram();
 
       tg.MainButton.setParams({
         text: 'Сплатити ' + course.sumToPay + ' грн.',
@@ -60,23 +60,23 @@ export default {
         tg.MainButton.show();
       }
 
-      // const orderData = JSON.stringify(course);
+      const orderData = JSON.stringify(course);
 
       tg.onEvent('mainButtonClicked', function(){
-        // tg.sendData(orderData);
-        // console.log(orderData);
-        fetch('http://localhost:8000', {
+         tg.sendData(orderData);
+
+        /*fetch('http://localhost:8000', {
           method: 'POST',
           headers: {
             'Content_Type': 'application/json'
           },
           body: JSON.stringify(course)
-        })
+        })*/
 
       });
       tg.offEvent('mainButtonClicked', () => {
-        // tg.sendData(orderData);
-        // console.log(orderData);
+         tg.sendData(orderData);
+
       })
     }
   },

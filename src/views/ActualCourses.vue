@@ -53,19 +53,14 @@ export default {
         tg.MainButton.show();
       }
       const orderData = JSON.stringify(this.order);
-      const mainButton = tg.MainButton;
 
-      mainButton.onClick(sendDataToBot);
 
-      function sendDataToBot() {
+
+
+      tg.onEvent('mainButtonClicked', function(){
         tg.sendData(orderData);
         console.log(orderData);
-      }
-
-      /*tg.onEvent('mainButtonClicked', () => {
-        tg.sendData(orderData);
-        console.log(orderData);
-      });*/
+      });
 
       tg.offEvent('mainButtonClicked', () => {
         tg.sendData(orderData);

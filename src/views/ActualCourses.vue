@@ -60,7 +60,7 @@ export default {
         tg.MainButton.show();
       }
 
-      const orderData = JSON.stringify(course);
+      // const orderData = JSON.stringify(course);
 
       tg.onEvent('mainButtonClicked', function(){
         // tg.sendData(orderData);

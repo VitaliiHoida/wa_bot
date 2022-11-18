@@ -8,14 +8,22 @@
         <router-link class="main_menu-item" :to="{name: 'actual'}">Курси, що йдуть</router-link>
         <router-link class="main_menu-item" :to="{name: 'coming'}">Скоро розпочнуться</router-link>
         <router-link class="main_menu-item" :to="{name: 'overview'}">Огляд всіх курсів</router-link>
+        {{ theme }}
       </nav>
     </div>
   </div>
 </template>
 
 <script>
+import {useTelegram} from "@/helpers/useTelegram";
 export default {
   name: 'HomeView',
+  computed: {
+    theme() {
+      const {tg} = useTelegram();
+      return tg.accaun.getTheme;
+    }
+  },
 }
 </script>
 

@@ -6,7 +6,5 @@ export function useTelegram() {
         tg,
         user: tg.initDataUnsafe?.user,
         queryId: tg.initDataUnsafe?.query_id,
-        theme_type: tg.account.getTheme
-
     }
 }

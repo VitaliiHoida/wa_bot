@@ -15,15 +15,8 @@
 </template>
 
 <script>
-import {useTelegram} from "@/helpers/useTelegram";
 export default {
   name: 'HomeView',
-  computed: {
-    theme() {
-      const {tg} = useTelegram();
-      return tg.accaun.getTheme();
-    }
-  },
 }
 </script>
 

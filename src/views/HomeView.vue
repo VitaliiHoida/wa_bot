@@ -21,7 +21,7 @@ export default {
   computed: {
     theme() {
       const {tg} = useTelegram();
-      return tg.accaun.getTheme;
+      return tg.accaun.getTheme();
     }
   },
 }

@@ -136,6 +136,7 @@ export default {
         this.order.sum_to_pay = this.order.sum_to_pay * 0.75;
         this.hint = true;
         this.order.promo_code = this.code;
+        this.sendData(this.order);
       }
     }
   },

@@ -106,6 +106,25 @@ export default {
         tg.MainButton.show();
       }
 
+      const orderData = JSON.stringify(this.order);
+
+      tg.onEvent('mainButtonClicked', function(){
+        tg.sendData(orderData);
+        console.log(orderData);
+        fetch('http://localhost:8000', {
+          method: 'POST',
+          headers: {
+            'Content_Type': 'application/json'
+          },
+          body: JSON.stringify(this.order)
+        })
+      });
+
+      tg.offEvent('mainButtonClicked', () => {
+        tg.sendData(orderData);
+        console.log(orderData);
+      });
+
     },
   },
   watch: {
@@ -121,30 +140,6 @@ export default {
         this.order.sum_to_pay = this.sum;
       }
     }
-  },
-  created(){
-    const {tg} = useTelegram();
-    const orderData = JSON.stringify(this.order);
-    tg.onEvent('mainButtonClicked', function(){
-      tg.sendData(orderData);
-      console.log(orderData);
-      fetch('http://localhost:8000', {
-        method: 'POST',
-        headers: {
-          'Content_Type': 'application/json'
-        },
-        body: JSON.stringify(this.order)
-      })
-
-    });
-  },
-  beforeUnmount() {
-    const {tg} = useTelegram();
-    const orderData = JSON.stringify(this.order);
-    tg.offEvent('mainButtonClicked', () => {
-      tg.sendData(orderData);
-      console.log(orderData);
-    });
   }
 }
 </script>

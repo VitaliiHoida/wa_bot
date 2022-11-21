@@ -126,6 +126,7 @@ export default {
     hint() {
       if (this.hint) {
         this.order.sum_to_pay = this.sum * 0.75;
+        this.order.promo_code = this.code;
         this.sendData(this.order);
       } else {
         this.order.sum_to_pay = this.sum;

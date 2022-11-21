@@ -97,7 +97,7 @@ export default {
     },
     sendData(order) {
       const {tg, user} = useTelegram();
-      order.user_name = user.username;
+      order.user_name = user.first_name + ' ' + user.last_name;
       tg.MainButton.setParams({
         text: 'Сплатити ' + order.sum_to_pay + ' грн.',
         color: '#217C2F',

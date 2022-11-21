@@ -96,8 +96,8 @@ export default {
       this.sendData(this.order);
     },
     sendData(order) {
-      const {tg, user} = useTelegram();
-      order.user_name = user.first_name + ' ' + user.last_name;
+      const {tg} = useTelegram();
+      order.user_name = tg.update.callback_query.from_user.id;
       tg.MainButton.setParams({
         text: 'Сплатити ' + order.sum_to_pay + ' грн.',
         color: '#217C2F',

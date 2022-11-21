@@ -77,8 +77,7 @@ export default {
       this.order.course_name = this.course.title.rendered;
       this.order.sum_to_pay = this.month;
 
-
-      this.sendData(this.order);
+      this.sendData();
     },
     fullPay() {
       this.btn1 = false;
@@ -87,25 +86,23 @@ export default {
       this.order.course_name = this.course.title.rendered;
       this.order.sum_to_pay = this.salePrice;
 
-      this.sendData(this.order);
+      this.sendData();
     },
-    sendData(course) {
+    sendData() {
       const {tg} = useTelegram();
 
-
-
       tg.MainButton.setParams({
-        text: 'Сплатити ' + course.sum_to_pay + ' грн.',
+        text: 'Сплатити ' + this.order.sum_to_pay + ' грн.',
         color: '#217C2F',
       });
 
-      if (!course.courseName && !course.sum_to_pay){
+      if (!this.order.course_name && !this.order.sum_to_pay){
         tg.MainButton.hide();
       } else {
         tg.MainButton.show();
       }
 
-      const orderData = JSON.stringify(course);
+      const orderData = JSON.stringify(this.order);
 
       tg.onEvent('mainButtonClicked', function(){
          tg.sendData(orderData);
@@ -115,7 +112,7 @@ export default {
           headers: {
             'Content_Type': 'application/json'
           },
-          body: JSON.stringify(course)
+          body: JSON.stringify(this.order)
         })
 
       });
@@ -123,8 +120,6 @@ export default {
          tg.sendData(orderData);
          console.log(orderData);
       });
-
-      /* промокод */
 
 
     },
@@ -136,7 +131,7 @@ export default {
         this.order.sum_to_pay = this.order.sum_to_pay * 0.75;
         this.hint = true;
         this.order.promo_code = this.code;
-        this.sendData(this.order);
+        this.sendData();
       }
     }
   },

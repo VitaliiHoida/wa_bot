@@ -15,7 +15,7 @@
         </div>
         <div class="line">
           <div class="text">Повна вартість</div>
-          <div class="sale">-25%</div>
+          <div class="sale">-10%</div>
           <div class="value">
             <span class="old">{{ fullSum }} грн</span>
             <br>
@@ -64,7 +64,7 @@ export default {
       return (this.course.ACF.bot_course_price * this.course.ACF.bot_course_duration);
     },
     salePrice() {
-      return this.fullSum * 0.75;
+      return this.fullSum * 0.9;
     }
   },
   methods: {
@@ -92,6 +92,7 @@ export default {
 
       tg.MainButton.setParams({
         text: 'Сплатити ' + course.sum_to_pay + ' грн.',
+        color: '#217C2F',
       });
 
       if (!course.courseName && !course.sum_to_pay){

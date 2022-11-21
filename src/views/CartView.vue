@@ -74,7 +74,7 @@ export default {
 
       this.order.course_name = this.course.title.rendered;
       this.order.sum_to_pay = this.month;
-      this.order.user_name = this.tg.user;
+
 
       this.sendData(this.order);
     },

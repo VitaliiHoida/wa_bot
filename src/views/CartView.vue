@@ -29,7 +29,7 @@
     <div v-if="btn1 || btn2">
       <div class="line_bottom"></div>
       <div class="coupon">
-        <input type="text" placeholder="Промокод" v-model="order.promo_code">
+        <input type="text" placeholder="Промокод" v-model="code">
         <span class="hint" v-if="hint">Вітаємо! Промокод введено вірно!<br>
 Ваша знижка складає 25%</span>
       </div>
@@ -55,12 +55,12 @@ export default {
     btn1: false,
     btn2: false,
     hint: false,
-
+    code: '',
   }),
   computed: {
     ...mapState('courses', ['course']),
     month() {
-      return this.course.ACF.bot_course_price;
+      return this.course.ACF.bot_course_price * 1;
     },
     fullSum() {
       return (this.course.ACF.bot_course_price * this.course.ACF.bot_course_duration);

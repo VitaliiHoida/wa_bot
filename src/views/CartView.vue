@@ -86,9 +86,7 @@ export default {
       this.btn1 = false;
       this.btn2 = true;
 
-      this.order.course_name = this.course.title.rendered;
       this.sum = this.salePrice;
-      this.order.sum_to_pay = this.sum;
 
       this.sendData();
     },
@@ -105,6 +103,14 @@ export default {
       } else {
         tg.MainButton.show();
       }
+      this.order.promo_code = this.code;
+      this.order.course_name = this.course.title.rendered;
+      if (this.hint) {
+        this.order.sum_to_pay = this.sum * 0.75;
+      } else {
+        this.order.sum_to_pay = this.sum;
+      }
+
 
       const orderData = JSON.stringify(this.order);
 
@@ -131,13 +137,9 @@ export default {
     // при каждом изменении `hint` эта функция будет запускаться
     code() {
       if (this.code === 'black friday') {
-        this.order.sum_to_pay = this.sum * 0.75;
-        this.order.promo_code = this.code;
         this.hint = true;
-        this.sendData();
       } else {
         this.hint = false;
-        this.order.sum_to_pay = this.sum;
       }
     }
   }

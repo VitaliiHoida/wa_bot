@@ -101,11 +101,11 @@ export default {
         tg.MainButton.show();
       }
 
-      // const orderData = JSON.stringify(course);
+      const orderData = JSON.stringify(course);
 
       tg.onEvent('mainButtonClicked', function(){
-        // tg.sendData(orderData);
-        // console.log(orderData);
+         tg.sendData(orderData);
+         console.log(orderData);
         fetch('http://localhost:8000', {
           method: 'POST',
           headers: {
@@ -116,8 +116,8 @@ export default {
 
       });
       tg.offEvent('mainButtonClicked', () => {
-        // tg.sendData(orderData);
-        // console.log(orderData);
+         tg.sendData(orderData);
+         console.log(orderData);
       })
     }
   }

@@ -24,8 +24,8 @@
         </div>
       </div>
     </div>
-    <button type="button" @click="monthPay" :class="{active: btn1}">За місяць</button>
-    <button type="button" @click="fullPay" :class="{active: btn2}">Повна вартість</button>
+    <button type="button" @click="monthPay" :class="{active: btn1 === true}">За місяць</button>
+    <button type="button" @click="fullPay" :class="{active: btn2 === true}">Повна вартість</button>
     <div v-if="btn1 || btn2">
       <div class="line_bottom"></div>
       <div class="coupon">

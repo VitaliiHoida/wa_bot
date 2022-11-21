@@ -54,8 +54,8 @@ export default {
     },
     btn1: false,
     btn2: false,
-    hint: false,
     code: '',
+    hint: false,
   }),
   computed: {
     ...mapState('courses', ['course']),
@@ -125,13 +125,16 @@ export default {
     },
   },
   watch: {
-    // при каждом изменении `question` эта функция будет запускаться
+    // при каждом изменении `hint` эта функция будет запускаться
     code() {
       if (this.code === 'black friday') {
         this.order.sum_to_pay = this.order.sum_to_pay * 0.75;
-        this.hint = true;
         this.order.promo_code = this.code;
+        this.hint = true;
         this.sendData();
+      } else {
+        this.hint = false;
+        this.order.sum_to_pay = this.order.sum_to_pay / 3 + this.order.sum_to_pay;
       }
     }
   },

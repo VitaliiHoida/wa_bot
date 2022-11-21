@@ -84,38 +84,31 @@ export default {
       this.btn2 = false;
       this.order.course_name = this.course.title.rendered;
       this.sum = this.month;
-      if (this.hint) {
-        this.order.sum_to_pay = this.sum * 0.75;
-      } else {
-        this.order.sum_to_pay = this.sum;
-      }
-      this.sendData();
+      this.order.sum_to_pay = this.sum;
+      this.sendData(this.order);
     },
     fullPay() {
       this.btn1 = false;
       this.btn2 = true;
       this.order.course_name = this.course.title.rendered;
       this.sum = this.salePrice;
-      if (this.hint) {
-        this.order.sum_to_pay = this.sum * 0.75;
-      } else {
-        this.order.sum_to_pay = this.sum;
-      }
-      this.sendData();
+      this.order.sum_to_pay = this.sum;
+      this.sendData(this.order);
     },
-    sendData() {
+    sendData(order) {
       const {tg} = useTelegram();
 
       tg.MainButton.setParams({
-        text: 'Сплатити ' + this.order.sum_to_pay + ' грн.',
+        text: 'Сплатити ' + order.sum_to_pay + ' грн.',
         color: '#217C2F',
       });
 
       tg.MainButton.show();
 
-      const orderData = JSON.stringify(this.order);
+      const orderData = JSON.stringify(order);
 
       tg.onEvent('mainButtonClicked', function () {
+
         tg.sendData(orderData);
         console.log(orderData);
         fetch('http://localhost:8000', {
@@ -134,6 +127,17 @@ export default {
 
     },
   },
+  watch: {
+    hint() {
+      if (this.hint) {
+        this.order.sum_to_pay = this.sum * 0.75;
+        this.sendData(this.order);
+      } else {
+        this.order.sum_to_pay = this.sum;
+        this.sendData(this.order);
+      }
+    }
+  }
 }
 </script>
 

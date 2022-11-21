@@ -57,7 +57,6 @@ export default {
     btn1: false,
     btn2: false,
     code: '',
-    hint: false,
     sum: '',
   }),
   computed: {
@@ -70,15 +69,26 @@ export default {
     },
     salePrice() {
       return this.fullSum * 0.9;
+    },
+    hint() {
+      if (this.code === 'black friday') {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
   methods: {
     monthPay() {
       this.btn1 = true;
       this.btn2 = false;
-
       this.order.course_name = this.course.title.rendered;
       this.sum = this.month;
+      if (this.hint) {
+        this.order.sum_to_pay = this.sum * 0.75;
+      } else {
+        this.order.sum_to_pay = this.sum;
+      }
       this.sendData();
     },
     fullPay() {
@@ -86,6 +96,11 @@ export default {
       this.btn2 = true;
       this.order.course_name = this.course.title.rendered;
       this.sum = this.salePrice;
+      if (this.hint) {
+        this.order.sum_to_pay = this.sum * 0.75;
+      } else {
+        this.order.sum_to_pay = this.sum;
+      }
       this.sendData();
     },
     sendData() {
@@ -96,44 +111,29 @@ export default {
         color: '#217C2F',
       });
 
-      if (!this.order.course_name && !this.order.sum_to_pay){
-        tg.MainButton.hide();
-      } else {
-        tg.MainButton.show();
-      }
+      tg.MainButton.show();
 
-      tg.onEvent('mainButtonClicked', function(){
-        tg.sendData(JSON.stringify(this.order));
-        console.log(JSON.stringify(this.order));
+      const orderData = JSON.stringify(this.order);
+
+      tg.onEvent('mainButtonClicked', function () {
+        tg.sendData(orderData);
+        console.log(orderData);
         fetch('http://localhost:8000', {
           method: 'POST',
           headers: {
             'Content_Type': 'application/json'
           },
-          body: JSON.stringify(this.order)
+          body: orderData
         })
       });
 
       tg.offEvent('mainButtonClicked', () => {
-        tg.sendData(JSON.stringify(this.order));
-        console.log(JSON.stringify(this.order));
+        tg.sendData(orderData);
+        console.log(orderData);
       });
 
     },
   },
-  watch: {
-    // при каждом изменении `hint` эта функция будет запускаться
-    code() {
-      this.order.promo_code = this.code;
-      if (this.code === 'black friday') {
-        this.hint = true;
-        this.order.sum_to_pay = this.sum * 0.75;
-      } else {
-        this.hint = false;
-        this.order.sum_to_pay = this.sum;
-      }
-    }
-  }
 }
 </script>
 

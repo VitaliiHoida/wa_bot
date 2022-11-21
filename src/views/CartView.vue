@@ -52,7 +52,6 @@ export default {
       user_name: '',
       user_phone: '',
     },
-    code: '',
     btn1: false,
     btn2: false,
     hint: false,
@@ -125,8 +124,7 @@ export default {
 
       /* промокод */
 
-      if (this.code === 'black friday') {
-        this.order.promo_code = this.code;
+      if (this.order.promo_code === 'black friday') {
         this.order.sum_to_pay = this.order.sum_to_pay * 0.75;
         this.hint = true;
       }

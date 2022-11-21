@@ -30,8 +30,10 @@
       <div class="line_bottom"></div>
       <div class="coupon">
         <input type="text" placeholder="Промокод" v-model="code">
-        <span class="hint" v-if="hint">Вітаємо! Промокод введено вірно!<br>
-Ваша знижка складає 25%</span>
+        <span class="hint" v-if="hint">
+          Вітаємо! Промокод введено вірно!<br>
+          Ваша знижка складає 25%
+        </span>
       </div>
     </div>
 
@@ -56,6 +58,7 @@ export default {
     btn2: false,
     code: '',
     hint: false,
+    sum: '',
   }),
   computed: {
     ...mapState('courses', ['course']),
@@ -75,8 +78,8 @@ export default {
       this.btn2 = false;
 
       this.order.course_name = this.course.title.rendered;
-      this.order.sum_to_pay = this.month;
-
+      this.sum = this.month;
+      this.order.sum_to_pay = this.sum;
       this.sendData();
     },
     fullPay() {
@@ -84,7 +87,8 @@ export default {
       this.btn2 = true;
 
       this.order.course_name = this.course.title.rendered;
-      this.order.sum_to_pay = this.salePrice;
+      this.sum = this.salePrice;
+      this.order.sum_to_pay = this.sum;
 
       this.sendData();
     },
@@ -102,42 +106,46 @@ export default {
         tg.MainButton.show();
       }
 
-      const orderData = JSON.stringify(this.order);
-
-      tg.onEvent('mainButtonClicked', function(){
-         tg.sendData(orderData);
-         console.log(orderData);
-        fetch('http://localhost:8000', {
-          method: 'POST',
-          headers: {
-            'Content_Type': 'application/json'
-          },
-          body: JSON.stringify(this.order)
-        })
-
-      });
-      tg.offEvent('mainButtonClicked', () => {
-         tg.sendData(orderData);
-         console.log(orderData);
-      });
-
-
     },
   },
   watch: {
     // при каждом изменении `hint` эта функция будет запускаться
     code() {
       if (this.code === 'black friday') {
-        this.order.sum_to_pay = this.order.sum_to_pay * 0.75;
+        this.order.sum_to_pay = this.sum * 0.75;
         this.order.promo_code = this.code;
         this.hint = true;
         this.sendData();
       } else {
         this.hint = false;
-        this.order.sum_to_pay = this.order.sum_to_pay / 3 + this.order.sum_to_pay;
+        this.order.sum_to_pay = this.sum;
       }
     }
   },
+  created(){
+    const {tg} = useTelegram();
+    const orderData = JSON.stringify(this.order);
+    tg.onEvent('mainButtonClicked', function(){
+      tg.sendData(orderData);
+      console.log(orderData);
+      fetch('http://localhost:8000', {
+        method: 'POST',
+        headers: {
+          'Content_Type': 'application/json'
+        },
+        body: JSON.stringify(this.order)
+      })
+
+    });
+  },
+  beforeUnmount() {
+    const {tg} = useTelegram();
+    const orderData = JSON.stringify(this.order);
+    tg.offEvent('mainButtonClicked', () => {
+      tg.sendData(orderData);
+      console.log(orderData);
+    });
+  }
 }
 </script>
 

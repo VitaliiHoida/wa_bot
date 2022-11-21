@@ -92,10 +92,7 @@ export default {
     sendData(course) {
       const {tg} = useTelegram();
 
-      if (course.promo_code === 'black friday') {
-        course.sum_to_pay = course.sum_to_pay * 0.75;
-        this.hint = true;
-      }
+
 
       tg.MainButton.setParams({
         text: 'Сплатити ' + course.sum_to_pay + ' грн.',
@@ -136,6 +133,10 @@ export default {
     // при каждом изменении `question` эта функция будет запускаться
     code() {
       this.order.promo_code = this.code;
+      if (this.promo_code === 'black friday') {
+        this.sum_to_pay = this.sum_to_pay * 0.75;
+        this.hint = true;
+      }
     }
   },
 }

@@ -87,7 +87,6 @@ export default {
 
       this.sendData(this.order);
     },
-
     sendData(course) {
       const {tg} = useTelegram();
 
@@ -119,8 +118,14 @@ export default {
          tg.sendData(orderData);
          console.log(orderData);
       })
+    },
+  },
+  watch: {
+    // при каждом изменении `question` эта функция будет запускаться
+    code() {
+      this.order.promo_code = this.code;
     }
-  }
+  },
 }
 </script>
 

@@ -79,15 +79,13 @@ export default {
 
       this.order.course_name = this.course.title.rendered;
       this.sum = this.month;
-      this.order.sum_to_pay = this.sum;
       this.sendData();
     },
     fullPay() {
       this.btn1 = false;
       this.btn2 = true;
-
+      this.order.course_name = this.course.title.rendered;
       this.sum = this.salePrice;
-
       this.sendData();
     },
     sendData() {
@@ -103,20 +101,10 @@ export default {
       } else {
         tg.MainButton.show();
       }
-      this.order.promo_code = this.code;
-      this.order.course_name = this.course.title.rendered;
-      if (this.hint) {
-        this.order.sum_to_pay = this.sum * 0.75;
-      } else {
-        this.order.sum_to_pay = this.sum;
-      }
-
-
-      const orderData = JSON.stringify(this.order);
 
       tg.onEvent('mainButtonClicked', function(){
-        tg.sendData(orderData);
-        console.log(orderData);
+        tg.sendData(JSON.stringify(this.order));
+        console.log(JSON.stringify(this.order));
         fetch('http://localhost:8000', {
           method: 'POST',
           headers: {
@@ -127,8 +115,8 @@ export default {
       });
 
       tg.offEvent('mainButtonClicked', () => {
-        tg.sendData(orderData);
-        console.log(orderData);
+        tg.sendData(JSON.stringify(this.order));
+        console.log(JSON.stringify(this.order));
       });
 
     },
@@ -136,10 +124,13 @@ export default {
   watch: {
     // при каждом изменении `hint` эта функция будет запускаться
     code() {
+      this.order.promo_code = this.code;
       if (this.code === 'black friday') {
         this.hint = true;
+        this.order.sum_to_pay = this.sum * 0.75;
       } else {
         this.hint = false;
+        this.order.sum_to_pay = this.sum;
       }
     }
   }

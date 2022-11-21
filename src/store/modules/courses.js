@@ -5,6 +5,7 @@ export default {
   namespaced: true,
   state: {
     data: null,
+    course: null,
   },
   getters: {},
   mutations: {
@@ -14,6 +15,9 @@ export default {
     getCoursesSuccess(state, payload) {
       state.data = payload;
     },
+    chooseCourse(state,  item) {
+      state.course = item;
+    }
   },
   actions: {
     getCourses(context, { apiUrl }) {

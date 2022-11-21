@@ -1,58 +1,45 @@
 <template>
-  <div class="home wrapper">
-    <div class="container">
-      <div class="img_container">
-        <img src="@/assets/logo.svg" alt="Webnauts Academy" />
-      </div>
-      <nav class="main_menu">
-        <router-link class="main_menu-item" :to="{name: 'actual'}">Курси, що йдуть</router-link>
-        <router-link class="main_menu-item" :to="{name: 'coming'}">Скоро розпочнуться</router-link>
-        <router-link class="main_menu-item" :to="{name: 'overview'}">Огляд всіх курсів</router-link>
-        {{ theme }}
-      </nav>
+  <div>
+    <h2>Оберіть курс для оплати</h2>
+    <div class="body">
+      <course-card v-for="(course, index) in data"
+                   :key="index"
+                   :item="course"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import CourseCard from "@/components/CourseCard";
+import {mapState} from "vuex";
+
 export default {
   name: 'HomeView',
+  components: {
+    CourseCard,
+  },
+  computed: {
+    ...mapState('courses', ['data']),
+  },
 }
 </script>
 
 <style>
-.main_menu {
+.body {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin-top: 40px;
 }
 
-.main_menu-item {
-  margin: 15px 0;
-  font-size: 16px;
-  font-weight: 500;
+h2 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
   text-transform: uppercase;
-  text-decoration: none;
-  padding: 10px 20px;
-  color: var(--tg-theme-button-text-color);
-  background-color: var(--tg-theme-button-color);
-  min-width: 240px;
-  text-align: center;
-  letter-spacing: 1px;
-  border: none;
-  outline: none;
-}
-
-
-
-.img_container {
-  text-align: center;
-  margin-bottom: 25px;
-
-}
-
-.img_container img {
-  width: 100%;
 }
 </style>

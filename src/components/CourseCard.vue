@@ -1,71 +1,21 @@
 <template>
-  <div v-if="actual">
-    <div class="course_link" v-if="course.ACF.bot_active_course">
-      <div class="course_item">
-        <img :src="course.ACF.bot_image" class="course_img"/>
-        <div class="course_info">
-          <h2 class="course_title">{{ course.title.rendered.toUpperCase() }}</h2>
-          <a :href="course.link" target="_blank" v-if="overview">Натисність, щоб дізнатись більше...</a>
-          <div class="buttons" v-if="actual">
-            <button @click="buyMonthComp()">Сплатити 1 місяць</button>
-            <button @click="buyFullComp()">Сплатити повний курс</button>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="wrap">
+    <img :src="item.ACF.bot_image" class="course_img"/>
+    <span>{{ item.title.rendered }}</span>
+    <button type="button" @click="choose(item)">ОБРАТИ</button>
   </div>
-
-  <div v-if="coming">
-    <div class="course_link" v-if="!!course.ACF.bot_course_start">
-      <div class="course_item">
-        <img :src="course.ACF.bot_image" class="course_img"/>
-        <div class="course_info">
-          <h2 class="course_title">{{ course.title.rendered.toUpperCase() }}</h2>
-          <a :href="course.link" target="_blank" v-if="overview">Натисність, щоб дізнатись більше...</a>
-          <div class="buttons" v-if="!payClick">
-            <button>Записатись</button>
-            <button @click="change()">Сплатити</button>
-          </div>
-          <div class="buttons" v-else>
-            <button>Сплатити 1 місяць</button>
-            <button>Сплатити повний курс</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div v-if="overview">
-    <div class="course_link">
-      <div class="course_item">
-        <img :src="course.ACF.bot_image" class="course_img"/>
-        <div class="course_info">
-          <h2 class="course_title">{{ course.title.rendered.toUpperCase() }}</h2>
-          <a :href="course.link" target="_blank" >Натисність, щоб дізнатись більше...</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </template>
 
 <script>
+import {mapState, mapMutations} from "vuex";
+
 export default {
   name: 'CourseCard',
   props: {
-    course: {
+    item: {
       type: Object,
       required: true
     },
-    overview: {
-      type: Boolean,
-    },
-    actual: {
-      type: Boolean,
-    },
-    coming: {
-      type: Boolean,
-    }
   },
   emits: {
     payMonth: null,
@@ -74,81 +24,54 @@ export default {
   data: () => ({
     payClick: false,
   }),
+  computed: {
+    ...mapState('courses', ['course'])
+  },
   methods: {
-    change() {
-      this.payClick = !this.payClick;
-    },
-    buyMonthComp(){
-      this.$emit('payMonth');
-    },
-    buyFullComp(){
-      this.$emit('payFull');
+    ...mapMutations('courses', ['chooseCourse']),
+    choose(el) {
+     this.chooseCourse(el);
+     this.$router.push('/cart');
     }
   },
 }
 </script>
 
 <style scoped>
-.course_link {
-  border: 1px solid var(--tg-theme-text-color);
-  color: var(--tg-theme-text-color);
-  text-decoration: none;
-  margin: 5px 0;
-}
-
-
-.course_item {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  padding: 0;
-}
-
-.course_info {
+.wrap {
   display: flex;
   flex-direction: column;
+  width: 100px;
+  margin: 0 0 30px 0;
   justify-content: space-between;
-  padding: 0 5px 5px 5px;
+  text-align: center;
+}
+
+img {
+  margin-bottom: 5px;
+  height: 100px;
   width: 100%;
 }
 
-.course_img {
-  min-width: 100px;
-  width: 100px;
-  border-right: 1px solid #787878;
-}
-
-.course_title {
-  font-size: 14px;
-  line-height: 19px;
-  font-weight: 500;
-  margin: 10px 0 0 0;
-}
-
-.course_item a {
+span {
+  font-style: normal;
+  font-weight: 400;
   font-size: 12px;
-  color: #787878;
-  margin: 10px 0 5px 0;
-  text-decoration: none;
+  line-height: 14px;
+  margin-bottom: 10px;
 }
 
-.course_item a:hover {
-  color: #e33825;
-}
-
-.course_item button {
-  color: var(--tg-theme-button-text-color);
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 300;
-  background-color: var(--tg-theme-button-color);
-  cursor: pointer;
-  min-width: 170px;
-  padding: 2px 0;
+button {
+  width: 100%;
   text-align: center;
-  margin: 2px 0;
+  padding: 10px 0;
+  border-radius: unset;
   border: none;
-  outline: none;
+  color: #FFFFFF;
+  background-color: #E00A23;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  cursor: pointer;
 }
-
 </style>

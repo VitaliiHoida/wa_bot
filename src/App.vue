@@ -1,5 +1,23 @@
 <template>
-  <router-view />
+  <div class="wrapper">
+    <div class="container">
+      <div class="fw">
+        <div class="header">
+          <div class="back_container">
+            <router-link :to="{name: 'home'}" title="На головну"><img src="@/assets/img/back.svg" alt="back"/></router-link>
+          </div>
+          <div class="img_container">
+            <img src="@/assets/img/logo.svg" alt="Webnauts Academy"/>
+          </div>
+          <div class="support_container">
+            <a href="https://t.me/t_khimich" title="Написати адміністратору"><img src="@/assets/img/support.svg" alt="support"/></a>
+          </div>
+        </div>
+      </div>
+      <router-view/>
+    </div>
+  </div>
+
 </template>
 
 <script>
@@ -20,10 +38,46 @@ export default {
 </script>
 
 <style>
-@import url("@/assets/fonts/Akzidenz-GroteskPro/stylesheet.css");
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  src: local('Roboto'), url("assets/fonts/Roboto/Roboto-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  src: local('Roboto'), url("assets/fonts/Roboto/Roboto-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  src: local('Roboto'), url("assets/fonts/Roboto/Roboto-Thin.ttf");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  src: local('Roboto'), url("assets/fonts/Roboto/Roboto-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  src: local('Roboto'), url("assets/fonts/Roboto/Roboto-Medium.ttf");
+  font-weight: 500;
+}
+
+* {
+  font-family: "Roboto";
+}
 
 body {
-  font-family: "Akzidenz-Grotesk Pro";
   background-color: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);
   margin: 0;
@@ -34,37 +88,27 @@ body {
   max-width: 380px;
   width: 100%;
 }
+
 .container {
-  padding: 20px 5px 10px 5px;
-  width: calc(100% - 10px);
+  padding: 30px 15px 10px 15px;
+  width: calc(100% - 30px);
   max-width: 370px;
   min-height: 100vh;
 }
-.title {
-  text-align: center;
-  font-size: 18px;
-  font-weight: 500;
-  text-transform: uppercase;
-  margin-top: 5px;
-  letter-spacing: 1px;
-}
-.course_wrapper {
-  margin: 5px 0;
-  width: 100%;
+
+.fw {
+  width: calc(100% + 30px);
+  margin-left: -15px;
+  background: rgba(255, 255, 255, 0.5);
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
 }
-.back_link {
-  font-size: 12px;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #787878;
-  padding: 5px;
-  letter-spacing: 1px;
-  font-weight: 500;
-}
-.back_link:active,
-.back_link:hover {
-  color: #e33825;
+
+.header {
+  display: flex;
+  width: calc(100% - 30px);
+  justify-content: space-between;
+  padding: 15px 0;
 }
 </style>

@@ -38,40 +38,6 @@ export default {
 </script>
 
 <style>
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  src: local('Roboto'), url("@/assets/fonts/Roboto/Roboto-Regular.ttf") format('truetype');
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  src: local('Roboto'), url("@/assets/fonts/Roboto/Roboto-Light.ttf") format('truetype');
-  font-weight: 300;
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  src: local('Roboto'), url("@/assets/fonts/Roboto/Roboto-Thin.ttf") format('truetype');
-  font-weight: 100;
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  src: local('Roboto'), url("@/assets/fonts/Roboto/Roboto-Bold.ttf") format('truetype');
-  font-weight: 700;
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  src: local('Roboto'), url("@/assets/fonts/Roboto/Roboto-Medium.ttf") format('truetype');
-  font-weight: 500;
-}
 
 * {
   font-family: "Roboto";

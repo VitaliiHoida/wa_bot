@@ -132,10 +132,10 @@ export default {
   watch: {
     // при каждом изменении `question` эта функция будет запускаться
     code() {
-      this.order.promo_code = this.code;
-      if (this.promo_code === 'black friday') {
+      if (this.code === 'black friday') {
         this.sum_to_pay = this.sum_to_pay * 0.75;
         this.hint = true;
+        this.order.promo_code = this.code;
       }
     }
   },

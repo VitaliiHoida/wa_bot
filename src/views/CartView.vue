@@ -38,6 +38,7 @@
 
 <script>
 import {mapState} from "vuex";
+import {useTelegram} from "@/helpers/useTelegram"
 
 export default {
   name: 'CartView',
@@ -70,15 +71,55 @@ export default {
     monthPay() {
       this.btn1 = true;
       this.btn2 = false;
+
       this.order.course_name = this.course.title.rendered;
       this.order.sum_to_pay = this.month;
+      this.order.user_name = this.tg.user;
+
+      this.sendData(this.order);
     },
     fullPay() {
       this.btn1 = false;
       this.btn2 = true;
+
       this.order.course_name = this.course.title.rendered;
       this.order.sum_to_pay = this.salePrice;
+
+      this.sendData(this.order);
     },
+
+    sendData(course) {
+      const {tg} = useTelegram();
+
+      tg.MainButton.setParams({
+        text: 'Сплатити ' + course.sum_to_pay + ' грн.',
+      });
+
+      if (!course.courseName && !course.sum_to_pay){
+        tg.MainButton.hide();
+      } else {
+        tg.MainButton.show();
+      }
+
+      // const orderData = JSON.stringify(course);
+
+      tg.onEvent('mainButtonClicked', function(){
+        // tg.sendData(orderData);
+        // console.log(orderData);
+        fetch('http://localhost:8000', {
+          method: 'POST',
+          headers: {
+            'Content_Type': 'application/json'
+          },
+          body: JSON.stringify(course)
+        })
+
+      });
+      tg.offEvent('mainButtonClicked', () => {
+        // tg.sendData(orderData);
+        // console.log(orderData);
+      })
+    }
   }
 }
 </script>

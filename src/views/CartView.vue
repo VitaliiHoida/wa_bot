@@ -30,6 +30,8 @@
       <div class="line_bottom"></div>
       <div class="coupon">
         <input type="text" placeholder="Промокод" v-model="order.promo_code">
+        <span class="hint" v-if="hint">Вітаємо! Промокод введено вірно!<br>
+Ваша знижка складає 25%</span>
       </div>
     </div>
 
@@ -53,6 +55,7 @@ export default {
     code: '',
     btn1: false,
     btn2: false,
+    hint: false,
 
   }),
   computed: {
@@ -118,7 +121,15 @@ export default {
       tg.offEvent('mainButtonClicked', () => {
          tg.sendData(orderData);
          console.log(orderData);
-      })
+      });
+
+      /* промокод */
+
+      if (this.code === 'black friday') {
+        this.order.promo_code = this.code;
+        this.order.sum_to_pay = this.order.sum_to_pay * 0.75;
+        this.hint = true;
+      }
     },
   },
   watch: {
@@ -260,5 +271,12 @@ button.active {
 
 .coupon input {
   outline: 0;
+}
+
+.hint {
+  margin-top: 5px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
 }
 </style>

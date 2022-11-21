@@ -133,7 +133,7 @@ export default {
     // при каждом изменении `question` эта функция будет запускаться
     code() {
       if (this.code === 'black friday') {
-        this.sum_to_pay = this.sum_to_pay * 0.75;
+        this.order.sum_to_pay = this.order.sum_to_pay * 0.75;
         this.hint = true;
         this.order.promo_code = this.code;
       }

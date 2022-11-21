@@ -92,6 +92,11 @@ export default {
     sendData(course) {
       const {tg} = useTelegram();
 
+      if (course.promo_code === 'black friday') {
+        course.sum_to_pay = course.sum_to_pay * 0.75;
+        this.hint = true;
+      }
+
       tg.MainButton.setParams({
         text: 'Сплатити ' + course.sum_to_pay + ' грн.',
         color: '#217C2F',
@@ -124,10 +129,7 @@ export default {
 
       /* промокод */
 
-      if (this.order.promo_code === 'black friday') {
-        this.order.sum_to_pay = this.order.sum_to_pay * 0.75;
-        this.hint = true;
-      }
+
     },
   },
   watch: {

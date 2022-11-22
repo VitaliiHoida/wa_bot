@@ -111,7 +111,7 @@ export default {
         const data = {
           sum: order.sum_to_pay,
           courseName: order.course_name,
-          userName: user.first_name + user.last_name,
+          userName: user.first_name + ' ' + user.last_name,
           promo: order.promo_code,
           queryId
         };

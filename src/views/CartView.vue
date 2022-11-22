@@ -96,7 +96,9 @@ export default {
       this.sendData(this.order);
     },
     sendData(order) {
-      const {tg, queryId} = useTelegram();
+      const {tg, queryId, user} = useTelegram();
+      order.user_name = user.username;
+
       tg.MainButton.setParams({
         text: 'Сплатити ' + order.sum_to_pay + ' грн.',
         color: '#217C2F',
@@ -109,14 +111,14 @@ export default {
         const data = {
           order,
           queryId
-        }
+        };
         fetch('http://localhost:8000/web-data', {
           method: 'POST',
           headers: {
             'Content_Type': 'application/json'
           },
           body: JSON.stringify(data)
-        })
+        });
       });
 
       tg.offEvent('mainButtonClicked', () => {

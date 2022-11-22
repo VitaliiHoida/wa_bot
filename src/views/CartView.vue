@@ -107,24 +107,18 @@ export default {
 
       tg.MainButton.show();
 
-      tg.onEvent('mainButtonClicked', function () {
+      const mainButtonHandler = function () {
         const data = {
           order,
           queryId
         };
 
         axios.post('http://localhost:8000/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}});
+      };
 
-        tg.MainButton.hide();
-      });
+      tg.onEvent('mainButtonClicked', mainButtonHandler);
 
-      tg.offEvent('mainButtonClicked', () => {
-        const data = {
-          order,
-          queryId
-        };
-        axios.post('http://localhost:8000/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}});
-      });
+      tg.offEvent('mainButtonClicked', mainButtonHandler);
 
     },
   },

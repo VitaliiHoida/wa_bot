@@ -118,7 +118,7 @@ export default {
 
       tg.onEvent('mainButtonClicked', mainButtonHandler());
 
-      tg.offEvent('mainButtonClicked', mainButtonHandler());
+      // tg.offEvent('mainButtonClicked', mainButtonHandler());
 
     },
   },

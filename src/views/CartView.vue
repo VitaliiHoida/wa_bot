@@ -43,6 +43,7 @@
 <script>
 import {mapState} from "vuex";
 import {useTelegram} from "@/helpers/useTelegram"
+import axios from "@/api/axios";
 
 export default {
   name: 'CartView',
@@ -111,13 +112,14 @@ export default {
           order,
           queryId
         };
-        fetch('http://localhost:8000/web-data', {
-          method: 'POST',
-          headers: {
-            'Content_Type': 'application/json'
-          },
-          body: JSON.stringify(data)
+
+        axios.post('http://localhost:8000/web-data',{
+              headers: {
+                'Content_Type': 'application/json'
+              },
+              body: JSON.stringify(data)
         });
+
         tg.MainButton.hide();
       });
 
@@ -126,8 +128,7 @@ export default {
           order,
           queryId
         };
-        fetch('http://localhost:8000/web-data', {
-          method: 'POST',
+        axios.post('http://localhost:8000/web-data',{
           headers: {
             'Content_Type': 'application/json'
           },

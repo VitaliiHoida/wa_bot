@@ -105,8 +105,7 @@ export default {
       tg.MainButton.show();
 
       tg.onEvent('mainButtonClicked', function () {
-        order.queryId = queryId;
-        tg.sendData(JSON.stringify(order));
+        tg.sendData(queryId, JSON.stringify(order));
         fetch('http://localhost:8000/web-data', {
           method: 'POST',
           headers: {

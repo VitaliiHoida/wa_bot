@@ -23,7 +23,7 @@ export default {
     ...mapState('courses', ['data']),
     courses() {
       let actives = [];
-      this.data.forEach(el => {
+      this.data?.forEach(el => {
         if (el.ACF.bot_active_course) {
           actives.push(el);
         }

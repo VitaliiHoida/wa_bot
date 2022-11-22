@@ -2,7 +2,7 @@
   <div>
     <h2>Оберіть курс для оплати</h2>
     <div class="body">
-      <course-card v-for="(course, index) in data"
+      <course-card v-for="(course, index) in courses"
                    :key="index"
                    :item="course"
       />
@@ -21,6 +21,15 @@ export default {
   },
   computed: {
     ...mapState('courses', ['data']),
+    courses() {
+      let actives = [];
+      this.data.forEach(el => {
+        if (el.ACF.bot_active_course) {
+          actives.push(el);
+        }
+      });
+      return actives;
+    }
   },
 }
 </script>

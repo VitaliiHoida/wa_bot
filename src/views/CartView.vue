@@ -113,12 +113,7 @@ export default {
           queryId
         };
 
-        axios.post('http://localhost:8000/web-data',{
-              /*headers: {
-                'Content_Type': 'application/json'
-              },*/
-              body: JSON.stringify(data)
-        });
+        axios.post('http://localhost:8000/web-data', {body: JSON.stringify(data)}, {headers: {'Content_Type': 'application/json'}});
 
         tg.MainButton.hide();
       });
@@ -128,12 +123,7 @@ export default {
           order,
           queryId
         };
-        axios.post('http://localhost:8000/web-data',{
-          /*headers: {
-            'Content_Type': 'application/json'
-          },*/
-          body: JSON.stringify(data)
-        });
+        axios.post('http://localhost:8000/web-data', {body: JSON.stringify(data)}, {headers: {'Content_Type': 'application/json'}});
       });
 
     },

@@ -105,37 +105,14 @@ export default {
       });
 
       tg.MainButton.show();
-/*
       tg.onEvent('mainButtonClicked', function () {
-        //tg.sendData(JSON.stringify(order));
-        const data = {
-          order,
-          queryId
-        };
-        fetch('http://localhost:8000/web-data', {
-          method: 'POST',
-          headers: {
-            'Content_Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        });
+        this.fetching(order);
         tg.MainButton.hide();
       });
 
       tg.offEvent('mainButtonClicked', () => {
-        const data = {
-          order,
-          queryId
-        }
-        //tg.sendData(JSON.stringify(data));
-        fetch('http://localhost:8000/web-data', {
-          method: 'POST',
-          headers: {
-            'Content_Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        });
-      });*/
+        this.fetching(order);
+      });
 
     },
     fetching(order) {
@@ -165,21 +142,6 @@ export default {
       }
     }
   },
-  mounted() {
-    const {tg} = useTelegram();
-
-    tg.onEvent('mainButtonClicked', function () {
-      this.fetching(this.order);
-    });
-  },
-  beforeUnmount() {
-    const {tg} = useTelegram();
-
-    tg.offEvent('mainButtonClicked', function () {
-      this.fetching(this.order);
-    });
-    tg.MainButton.hide();
-  }
 }
 </script>
 

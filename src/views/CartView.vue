@@ -96,7 +96,7 @@ export default {
       this.sendData(this.order);
     },
     sendData(order) {
-      const {tg, user} = useTelegram();
+      const {tg, queryId, user} = useTelegram();
       order.user_name = user.first_name + ' ' + user.last_name;
 
       tg.MainButton.setParams({
@@ -105,30 +105,37 @@ export default {
       });
 
       tg.MainButton.show();
+
       tg.onEvent('mainButtonClicked', function () {
-        this.fetching(order);
+        const data = {
+          order,
+          queryId
+        };
+        fetch('http://localhost:8000/web-data', {
+          method: 'POST',
+          headers: {
+            'Content_Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
         tg.MainButton.hide();
       });
 
       tg.offEvent('mainButtonClicked', () => {
-        this.fetching(order);
+        const data = {
+          order,
+          queryId
+        };
+        fetch('http://localhost:8000/web-data', {
+          method: 'POST',
+          headers: {
+            'Content_Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
       });
 
     },
-    fetching(order) {
-      const {queryId} = useTelegram()
-      const data = {
-        order,
-        queryId
-      };
-      fetch('http://localhost:8000/web-data', {
-        method: 'POST',
-        headers: {
-          'Content_Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
-    }
   },
   watch: {
     hint() {

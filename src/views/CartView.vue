@@ -108,15 +108,17 @@ export default {
       tg.MainButton.show();
 
       const mainButtonHandler = function () {
+        console.log('mainButtonHandler');
         const data = {
           order,
           queryId
         };
 
         axios.post('http://localhost:8000/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}});
+
       };
 
-      tg.onEvent('mainButtonClicked', mainButtonHandler());
+      tg.onEvent('mainButtonClicked', mainButtonHandler);
 
       // tg.offEvent('mainButtonClicked', mainButtonHandler());
 

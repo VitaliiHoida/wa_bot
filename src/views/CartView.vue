@@ -116,11 +116,12 @@ export default {
 
         axios.post('http://localhost:8000/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}});
 
+        tg.offEvent('mainButtonClicked', mainButtonHandler);
       };
 
       tg.onEvent('mainButtonClicked', mainButtonHandler);
 
-      // tg.offEvent('mainButtonClicked', mainButtonHandler());
+
 
     },
   },

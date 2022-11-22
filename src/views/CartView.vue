@@ -96,7 +96,7 @@ export default {
       this.sendData(this.order);
     },
     sendData(order) {
-      const {tg, queryId, user} = useTelegram();
+      const {tg, user} = useTelegram();
       order.user_name = user.first_name + ' ' + user.last_name;
 
       tg.MainButton.setParams({
@@ -105,7 +105,7 @@ export default {
       });
 
       tg.MainButton.show();
-
+/*
       tg.onEvent('mainButtonClicked', function () {
         //tg.sendData(JSON.stringify(order));
         const data = {
@@ -135,9 +135,23 @@ export default {
           },
           body: JSON.stringify(data)
         });
-      });
+      });*/
 
     },
+    fetching(order) {
+      const {queryId} = useTelegram()
+      const data = {
+        order,
+        queryId
+      };
+      fetch('http://localhost:8000/web-data', {
+        method: 'POST',
+        headers: {
+          'Content_Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+    }
   },
   watch: {
     hint() {
@@ -150,6 +164,21 @@ export default {
         this.sendData(this.order);
       }
     }
+  },
+  mounted() {
+    const {tg} = useTelegram();
+
+    tg.onEvent('mainButtonClicked', function () {
+      this.fetching(this.order);
+    });
+  },
+  beforeUnmount() {
+    const {tg} = useTelegram();
+
+    tg.offEvent('mainButtonClicked', function () {
+      this.fetching(this.order);
+    });
+    tg.MainButton.hide();
   }
 }
 </script>

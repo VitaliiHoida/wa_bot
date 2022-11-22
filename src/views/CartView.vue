@@ -129,7 +129,14 @@ export default {
           order,
           queryId
         }
-        tg.sendData(JSON.stringify(data));
+        //tg.sendData(JSON.stringify(data));
+        fetch('http://localhost:8000/web-data', {
+          method: 'POST',
+          headers: {
+            'Content_Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
       });
 
     },

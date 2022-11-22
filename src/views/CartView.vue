@@ -119,6 +119,7 @@ export default {
           },
           body: JSON.stringify(data)
         });
+        tg.MainButton.hide();
       });
 
       tg.offEvent('mainButtonClicked', () => {

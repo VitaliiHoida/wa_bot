@@ -109,7 +109,10 @@ export default {
       tg.onEvent('mainButtonClicked', function () {
         //tg.sendData(JSON.stringify(order));
         const data = {
-          order,
+          sum: order.sum_to_pay,
+          courseName: order.course_name,
+          userName: user.first_name + user.last_name,
+          promo: order.promo_code,
           queryId
         };
         fetch('http://localhost:8000/web-data', {

@@ -97,7 +97,7 @@ export default {
     },
     sendData(order) {
       const {tg, queryId, user} = useTelegram();
-      order.user_name = user.username;
+      order.user_name = user.first_name + ' ' + user.last_name;
 
       tg.MainButton.setParams({
         text: 'Сплатити ' + order.sum_to_pay + ' грн.',
@@ -109,10 +109,7 @@ export default {
       tg.onEvent('mainButtonClicked', function () {
         //tg.sendData(JSON.stringify(order));
         const data = {
-          sum: order.sum_to_pay,
-          courseName: order.course_name,
-          userName: user.first_name + ' ' + user.last_name,
-          promo: order.promo_code,
+          order,
           queryId
         };
         fetch('http://localhost:8000/web-data', {

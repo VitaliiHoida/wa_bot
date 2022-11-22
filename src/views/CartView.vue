@@ -106,7 +106,7 @@ export default {
 
       tg.onEvent('mainButtonClicked', function () {
         tg.sendData(JSON.stringify(order));
-        fetch('http://localhost:8000', {
+        fetch('http://localhost:8000/web-data', {
           method: 'POST',
           headers: {
             'Content_Type': 'application/json'

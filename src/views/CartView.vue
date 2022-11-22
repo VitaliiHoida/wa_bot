@@ -36,6 +36,7 @@
         </span>
       </div>
     </div>
+    <a :href="course.link" class="site_link">Подбробиці на сайті →</a>
 
   </div>
 </template>
@@ -229,7 +230,11 @@ h2 {
   box-sizing: border-box;
 }
 
-button {
+.site_link {
+  margin-top: 15px;
+}
+
+button, .site_link {
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
@@ -242,10 +247,12 @@ button {
   margin-top: 20px;
   cursor: pointer;
   transition: 0.3s ease-in;
+  text-align: center;
 }
 
 button:hover,
-button.active {
+button.active,
+.site_link:active {
   color: #FFFFFF;
   background-color: #E00A23;
   border: 1px solid #E00A23;

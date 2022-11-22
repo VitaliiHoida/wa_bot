@@ -113,7 +113,7 @@ export default {
           queryId
         };
 
-        axios.post('http://localhost:8000/web-data', JSON.stringify(data));
+        axios.post('http://localhost:8000/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}});
 
         tg.MainButton.hide();
       });
@@ -123,7 +123,7 @@ export default {
           order,
           queryId
         };
-        axios.post('http://localhost:8000/web-data', JSON.stringify(data));
+        axios.post('http://localhost:8000/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}});
       });
 
     },

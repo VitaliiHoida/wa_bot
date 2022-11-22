@@ -114,9 +114,9 @@ export default {
         };
 
         axios.post('http://localhost:8000/web-data',{
-              headers: {
+              /*headers: {
                 'Content_Type': 'application/json'
-              },
+              },*/
               body: JSON.stringify(data)
         });
 
@@ -129,9 +129,9 @@ export default {
           queryId
         };
         axios.post('http://localhost:8000/web-data',{
-          headers: {
+          /*headers: {
             'Content_Type': 'application/json'
-          },
+          },*/
           body: JSON.stringify(data)
         });
       });

@@ -1,7 +1,7 @@
 const tg = window.Telegram.WebApp;
 const user = tg.initDataUnsafe?.user;
 const queryId = tg.initDataUnsafe?.query_id;
-const chatId = window.Telegram.WebAppChat;
+const chatId = tg.Chat?.id;
 
 export function useTelegram() {
 

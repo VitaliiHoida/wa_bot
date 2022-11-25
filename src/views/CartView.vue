@@ -98,7 +98,7 @@ export default {
       this.sendData(this.order);
     },
     sendData(order) {
-      const {tg, queryId, user} = useTelegram();
+      const {tg, queryId, user, chatId} = useTelegram();
       order.user_name = user.first_name + ' ' + user.last_name;
 
       tg.MainButton.setParams({
@@ -112,7 +112,8 @@ export default {
 
         const data = {
           order,
-          queryId
+          queryId,
+          chatId
         };
 
         axios.post('http://localhost:8000/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}});

@@ -123,7 +123,7 @@ export default {
 
         axios.post('http://localhost:8000/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}}).then(
             (res) => {
-              this.pay_link = JSON.parse(res);
+              this.pay_link = res;
             }
         );
 

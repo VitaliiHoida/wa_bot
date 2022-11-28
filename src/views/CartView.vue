@@ -116,6 +116,18 @@ export default {
           chatId
         };
 
+        console.log(tg.createInvoiceLink({
+          title: order.course_name,
+          provider_token: '632593626:TEST:sandbox_i41389891898',
+          currency: 'UAH',
+          prices: [{label: 'Ціна', amount: order.sum_to_pay*100}],
+          photo_url: this.course.ACF.bot_image,
+          need_name: true,
+          need_phone_number: true,
+          need_shipping_address: false,
+        }));
+
+
         axios.post('http://localhost:8000/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}});
 
         tg.MainButton.hide();

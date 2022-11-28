@@ -131,6 +131,8 @@ export default {
 
         tg.offEvent('mainButtonClicked', mainButtonHandler);
 
+        this.$router.push(this.pay_link);
+
       };
 
       tg.onEvent('mainButtonClicked', mainButtonHandler);

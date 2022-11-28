@@ -122,8 +122,8 @@ export default {
         };
 
         axios.post('http://localhost:8000/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}}).then(
-            (res) => {
-              this.$router.push(res.data);
+            (response) => {
+              console.log(response.data);
             }
         );
 

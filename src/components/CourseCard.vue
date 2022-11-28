@@ -1,11 +1,6 @@
 <template>
   <div class="wrap">
-    <picture class="cafe-item-lottie js-item-lottie">
-      <source type="application/x-tgsticker" :srcset="item.ACF.bot_image">
-
-      <canvas width="74" height="74"></canvas></picture>
-
-<!--    <img :src="item.ACF.bot_image" class="course_img"/>-->
+    <img :src="item.ACF.bot_image" class="course_img"/>
     <span>{{ item.title.rendered }}</span>
     <button type="button" @click="choose(item)">ОБРАТИ</button>
   </div>

@@ -61,6 +61,7 @@ export default {
     btn2: false,
     code: '',
     sum: '',
+    pay_link:'',
   }),
   computed: {
     ...mapState('courses', ['course']),
@@ -120,7 +121,11 @@ export default {
           chatId
         };
 
-        axios.post('http://localhost:8000/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}});
+        axios.post('http://localhost:8000/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}}).then(
+            (res) => {
+              this.pay_link = JSON.parse(res);
+            }
+        );
 
         tg.MainButton.hide();
 

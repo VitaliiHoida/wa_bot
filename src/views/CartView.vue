@@ -123,7 +123,7 @@ export default {
 
         axios.post('http://localhost:8000/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}}).then(
             (res) => {
-              this.pay_link = res;
+              this.$router.push(res.data);
             }
         );
 
@@ -132,7 +132,7 @@ export default {
         tg.offEvent('mainButtonClicked', mainButtonHandler);
 
 
-        this.$router.push(this.pay_link);
+
 
       };
 

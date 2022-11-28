@@ -36,7 +36,7 @@
         </span>
       </div>
     </div>
-    {{order.url}}
+    {{pay_link}}
     <a :href="course.link" class="site_link">Подбробиці на сайті →</a>
 
   </div>
@@ -130,6 +130,7 @@ export default {
         tg.MainButton.hide();
 
         tg.offEvent('mainButtonClicked', mainButtonHandler);
+
 
         this.$router.push(this.pay_link);
 

@@ -36,6 +36,7 @@
         </span>
       </div>
     </div>
+    {{order.url}}
     <a :href="course.link" class="site_link">Подбробиці на сайті →</a>
 
   </div>
@@ -116,7 +117,7 @@ export default {
           chatId
         };
 
-        console.log(tg.createInvoiceLink({
+        this.order.url = tg.createInvoiceLink({
           title: order.course_name,
           provider_token: '632593626:TEST:sandbox_i41389891898',
           currency: 'UAH',
@@ -125,7 +126,7 @@ export default {
           need_name: true,
           need_phone_number: true,
           need_shipping_address: false,
-        }));
+        });
 
 
         axios.post('http://localhost:8000/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}});

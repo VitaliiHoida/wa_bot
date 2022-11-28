@@ -88,6 +88,7 @@ export default {
       this.order.course_name = this.course.title.rendered;
       this.sum = this.month;
       this.order.sum_to_pay = this.sum;
+      this.order.descr = '1 місяць';
       this.sendData(this.order);
     },
     fullPay() {
@@ -96,6 +97,7 @@ export default {
       this.order.course_name = this.course.title.rendered;
       this.sum = this.salePrice;
       this.order.sum_to_pay = this.sum;
+      this.order.descr = 'повний курс';
       this.sendData(this.order);
     },
     sendData(order) {

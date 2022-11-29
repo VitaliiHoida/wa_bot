@@ -125,7 +125,17 @@ export default {
             (response) => {
               // window.location = response.data;
               this.pay_link = response.data;
-              tg.openInvoice(this.pay_link);
+              tg.openInvoice(this.pay_link, function(status) {
+                if (status == 'paid') {
+                  tg.close();
+                } else if (status == 'failed') {
+                  tg.HapticFeedback.notificationOccurred('error');
+                  //Cafe.showStatus('Payment has been failed.');
+                } else {
+                  tg.HapticFeedback.notificationOccurred('warning');
+                  //Cafe.showStatus('You have cancelled this order.');
+                }
+              });
             }
         );
 

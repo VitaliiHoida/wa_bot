@@ -124,7 +124,7 @@ export default {
         axios.post('https://wabot.back.staj.fun/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}}).then(
             (response) => {
               // window.location = response.data;
-              const pay_url = response.data
+              const pay_url = response?.data;
               this.$router.push(pay_url);
             }
         );

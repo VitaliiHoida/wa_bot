@@ -125,7 +125,7 @@ export default {
             (response) => {
               // window.location = response.data;
               const pay_url = response.data;
-              if (pay_url !== '') {this.$router.push(pay_url)}
+              this.$router.push({path: pay_url});
             }
         );
 

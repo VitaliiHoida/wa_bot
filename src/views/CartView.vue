@@ -36,7 +36,7 @@
         </span>
       </div>
     </div>
-    {{pay_link}}
+    {{ pay_link }}
     <a :href="course.link" class="site_link">Подбробиці на сайті →</a>
 
   </div>
@@ -122,7 +122,7 @@ export default {
 
         axios.post('https://wabot.back.staj.fun/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}}).then(
             (response) => {
-              tg.openInvoice(response.data, function(status) {
+              tg.openInvoice(response.data, function (status) {
                 if (status == 'paid') {
                   tg.close();
                 } else if (status == 'failed') {
@@ -134,7 +134,6 @@ export default {
               });
             }
         );
-
 
 
         tg.MainButton.hide();
@@ -149,7 +148,11 @@ export default {
   watch: {
     hint() {
       if (this.hint) {
-        this.order.sum_to_pay = this.sum * 0.75;
+        if (!this.btn2) {
+          this.order.sum_to_pay = this.sum * 0.75;
+        } else {
+          this.order.sum_to_pay = this.fullSum * 0.75;
+        }
         this.order.promo_code = this.code;
         this.sendData(this.order);
       } else {

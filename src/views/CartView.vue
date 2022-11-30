@@ -37,7 +37,7 @@
       </div>
     </div>
     {{ pay_link }}
-    <a :href="course.link" class="site_link">Подбробиці на сайті →</a>
+    <button type="button" @click="goToSite" >Подбробиці на сайті →</button>
 
   </div>
 </template>
@@ -144,6 +144,9 @@ export default {
       tg.onEvent('mainButtonClicked', mainButtonHandler);
 
     },
+    goToSite() {
+      window.location(this.course.link);
+    }
   },
   watch: {
     hint() {

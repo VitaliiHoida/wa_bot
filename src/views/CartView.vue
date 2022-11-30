@@ -145,7 +145,7 @@ export default {
 
     },
     goToSite() {
-      window.location(this.course.link);
+      window.location.href(this.course.link);
     }
   },
   watch: {

@@ -1,11 +1,11 @@
 <template>
   <div class="wrap">
-    <picture class="cafe-item-lottie js-item-lottie" v-if="item.ACF.bot_image.includes('.tgs')">
+<!--    <picture class="cafe-item-lottie js-item-lottie" v-if="item.ACF.bot_image.includes('.tgs')">
       <source type="application/x-tgsticker" :srcset="item.ACF.bot_image">
 
       <canvas width="74" height="74"></canvas>
-    </picture>
-    <img :src="item.ACF.bot_image" class="course_img" v-else/>
+    </picture>-->
+    <img :src="item.ACF.bot_image" class="course_img" />
     <span>{{ item.title.rendered }}</span>
     <button type="button" @click="choose(item)">ОБРАТИ</button>
   </div>

@@ -133,7 +133,7 @@ export default {
                   //Cafe.showStatus('Payment has been failed.');
                 } else {
                   tg.HapticFeedback.notificationOccurred('warning');
-                  //Cafe.showStatus('You have cancelled this order.');
+                  tg.MainButton.hide();
                 }
               });
             }

@@ -61,7 +61,6 @@ export default {
     btn2: false,
     code: '',
     sum: '',
-    pay_link:'',
   }),
   computed: {
     ...mapState('courses', ['course']),
@@ -123,16 +122,14 @@ export default {
 
         axios.post('https://wabot.back.staj.fun/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}}).then(
             (response) => {
-              // window.location = response.data;
-              this.pay_link = response.data;
-              tg.openInvoice(this.pay_link, function(status) {
+              tg.openInvoice(response.data, function(status) {
                 if (status == 'paid') {
                   tg.close();
                 } else if (status == 'failed') {
-                  //tg.HapticFeedback.notificationOccurred('error');
+                  tg.HapticFeedback.notificationOccurred('error');
                   //Cafe.showStatus('Payment has been failed.');
                 } else {
-                  //tg.HapticFeedback.notificationOccurred('warning');
+                  tg.HapticFeedback.notificationOccurred('warning');
                 }
               });
             }

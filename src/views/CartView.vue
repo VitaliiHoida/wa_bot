@@ -129,11 +129,10 @@ export default {
                 if (status == 'paid') {
                   tg.close();
                 } else if (status == 'failed') {
-                  tg.HapticFeedback.notificationOccurred('error');
+                  //tg.HapticFeedback.notificationOccurred('error');
                   //Cafe.showStatus('Payment has been failed.');
                 } else {
-                  tg.HapticFeedback.notificationOccurred('warning');
-                  tg.MainButton.hide();
+                  //tg.HapticFeedback.notificationOccurred('warning');
                 }
               });
             }

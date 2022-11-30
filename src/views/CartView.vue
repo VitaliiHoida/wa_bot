@@ -145,7 +145,7 @@ export default {
 
     },
     goToSite() {
-      window.location.href = this.course.link;
+      window.open(this.course.link, "_blank");
     }
   },
   watch: {

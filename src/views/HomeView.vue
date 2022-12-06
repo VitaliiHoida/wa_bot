@@ -10,7 +10,13 @@
     </div>
     <hr>
     <div class="contacts">
-      <div class="phones"></div>
+      <div class="phones">
+        <ul>
+          <li>м.Кривий Ріг</li>
+          <li><a href="tel:+380984775490">+380984775490</a></li>
+          <li><a href="mailto:info@webnauts.academy">info@webnauts.academy</a></li>
+        </ul>
+      </div>
       <a href="Ofert.pdf" download>Публічна оферта</a>
     </div>
   </div>
@@ -61,5 +67,19 @@ h2 {
 .contacts {
   display: flex;
   justify-content: space-between;
+}
+
+.contacts a{
+  text-decoration: none;
+}
+
+.phones ul{
+  list-style: none;
+  margin:0;
+  padding: 0;
+}
+
+.phones ul li:not(:last-of-type){
+  padding-bottom: 5px;
 }
 </style>

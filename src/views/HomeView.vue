@@ -6,6 +6,12 @@
                    :key="index"
                    :item="course"
       />
+
+    </div>
+    <hr>
+    <div class="contacts">
+      <div class="phones"></div>
+      <a href="../assets/Ofert.pdf" download>Публічна оферта</a>
     </div>
   </div>
 </template>
@@ -50,5 +56,10 @@ h2 {
   line-height: 21px;
   text-align: center;
   text-transform: uppercase;
+}
+
+.contacts {
+  display: flex;
+  justify-content: space-between;
 }
 </style>

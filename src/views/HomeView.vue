@@ -11,7 +11,7 @@
     <hr>
     <div class="contacts">
       <div class="phones"></div>
-      <a href="../assets/Ofert.pdf" download>Публічна оферта</a>
+      <a href="Ofert.pdf" download>Публічна оферта</a>
     </div>
   </div>
 </template>

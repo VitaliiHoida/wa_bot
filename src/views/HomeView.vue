@@ -71,6 +71,7 @@ h2 {
 
 .contacts a{
   text-decoration: none;
+  color: var(--tg-theme-text-color);
 }
 
 .phones ul{

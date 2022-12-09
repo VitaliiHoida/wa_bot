@@ -120,7 +120,7 @@ export default {
           chatId
         };
 
-        axios.post(/*'https://wabot.back.staj.fun/web-data'*/ '/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}}).then(
+        axios.post('https://wabot.back.staj.fun/web-data', JSON.stringify(data), {headers: {'Content-Type': 'application/json'}}).then(
             (response) => {
               tg.openInvoice(response.data, function (status) {
                 if (status == 'paid') {

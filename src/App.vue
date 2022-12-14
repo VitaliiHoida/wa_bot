@@ -4,7 +4,7 @@
       <div class="fw">
         <div class="header">
           <div class="back_container">
-            <router-link :to="{name: 'home'}" title="На головну"><img src="@/assets/img/back.svg" alt="back"/></router-link>
+            <router-link :to="{name: 'home'}" title="На головну"><img src="@/assets/img/back.svg" alt="back" v-if="$route.path !== '/'"/></router-link>
           </div>
           <div class="img_container">
             <img src="@/assets/img/logo.svg" alt="Webnauts Academy"/>
@@ -76,5 +76,9 @@ body {
   width: calc(100% - 30px);
   justify-content: space-between;
   padding: 15px 0;
+}
+
+.header .back_container {
+  width: 40px;
 }
 </style>

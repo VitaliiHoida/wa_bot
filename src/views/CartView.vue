@@ -24,8 +24,8 @@
         </div>
       </div>
     </div>
-    <button type="button" @click="monthPay" :class="{active: btn1 === true}">За місяць</button>
-    <button type="button" @click="fullPay" :class="{active: btn2 === true}">Повна вартість</button>
+    <button type="button" @click="monthPay" :class="{active: btn1}">За місяць</button>
+    <button type="button" @click="fullPay" :class="{active: btn2}">Повна вартість</button>
     <div v-if="btn1 || btn2">
       <div class="line_bottom"></div>
       <div class="coupon">
@@ -63,7 +63,10 @@ export default {
     sum: '',
   }),
   computed: {
-    ...mapState('courses', ['course']),
+    ...mapState('courses', { selectedCource: 'course', courses: 'data' }),
+    course(){
+      return this.selectedCource ?? this.courses.find(obj => obj.id === Number(this.$route.query.id));
+    },
     month() {
       return this.course.ACF.bot_course_price * 1;
     },
@@ -74,11 +77,7 @@ export default {
       return this.fullSum * 0.9;
     },
     hint() {
-      if (this.code === 'black friday') {
-        return true;
-      } else {
-        return false;
-      }
+      return this.code === 'black friday';
     }
   },
   methods: {

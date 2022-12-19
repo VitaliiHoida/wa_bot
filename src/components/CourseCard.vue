@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import {mapState, mapMutations} from "vuex";
+import {mapMutations} from "vuex";
 
 export default {
   name: 'CourseCard',
@@ -29,14 +29,11 @@ export default {
   data: () => ({
     payClick: false,
   }),
-  computed: {
-    ...mapState('courses', ['course'])
-  },
   methods: {
     ...mapMutations('courses', ['chooseCourse']),
     choose(el) {
      this.chooseCourse(el);
-     this.$router.push('/cart');
+     this.$router.push({name: 'cart', query: {id: el.id}});
     }
   },
 }

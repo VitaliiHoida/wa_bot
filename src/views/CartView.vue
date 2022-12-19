@@ -75,13 +75,14 @@ export default {
     },
     hint() {
       if (this.code === 'black friday') {
-        return true;
+        return true;//What's this?
       } else {
         return false;
       }
     }
   },
   methods: {
+    //DRY
     monthPay() {
       this.btn1 = true;
       this.btn2 = false;
@@ -91,6 +92,7 @@ export default {
       this.order.descr = '1 місяць';
       this.sendData(this.order);
     },
+    //DRY
     fullPay() {
       this.btn1 = false;
       this.btn2 = true;

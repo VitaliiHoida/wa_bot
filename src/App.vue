@@ -65,10 +65,8 @@ body {
 .fw {
   width: calc(100% + 30px);
   margin-left: -15px;
-  background: rgba(255, 255, 255, 0.5);
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
 }
 
 .header {
@@ -81,4 +79,6 @@ body {
 .header .back_container {
   width: 40px;
 }
+
+
 </style>
